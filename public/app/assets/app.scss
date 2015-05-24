@@ -1,0 +1,41 @@
+html,
+body {
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+.room-status {
+  padding: 15px;
+  background: #4caf50;
+  color: #fff;
+}
+a {
+  text-decoration: none;
+  .card {
+    font-size: 25px;
+    background: #333;
+    color: #fff;
+    padding: 40px 20px;
+    text-align: center;
+  }
+}
+a.active {
+  text-decoration: none;
+  .card {
+    background: #ccc;
+    color: #333;
+  }
+}
+a:focus {
+  outline: none;
+}
+md-content {
+  bottom: 0;
+  position: absolute;
+  width: 100%;
+}
+.pull-right {
+  float: right;
+}
