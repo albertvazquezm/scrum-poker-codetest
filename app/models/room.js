@@ -5,12 +5,8 @@ var mongoose = require('mongoose'),
 
 var RoomSchema = new Schema({
   code: String,
-  people: Number
+  people: Number,
+  votes: []
 });
-
-// RoomSchema.pre('create', function(next) {
-//   this.people
-//   next();
-// })
 
 mongoose.model('Room', RoomSchema);
