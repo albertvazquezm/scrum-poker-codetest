@@ -27,10 +27,14 @@ module.exports = function(app, config) {
   app.use(express.static(config.root + '/public/app'));
   app.use(methodOverride());
 
-  var controllers = glob.sync(config.root + '/app/controllers/*.js');
-  controllers.forEach(function (controller) {
-    require(controller)(app);
-  });
+  // var controllers = glob.sync(config.root + '/app/controllers/*.js');
+  // controllers.forEach(function (controller) {
+  //   require(controller)(app);
+  // });
+
+  // Require routes
+
+  require(config.root + '/app/routes.js')(app);
 
   app.use(function (req, res, next) {
     var err = new Error('Not Found');
