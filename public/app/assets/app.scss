@@ -35,7 +35,6 @@ a.active {
     color: #333;
   }
 }
-
 a:focus {
   outline: none;
 }
@@ -56,20 +55,52 @@ a:focus {
   }
   &.end {
     h1 {
-      color: #4DD0E1;
+      color: #4dd0e1;
     }
     .card {
-      background: #4DD0E1;
-      border: #80DEEA 4px solid;
+      background: #4dd0e1;
+      border: #80deea 4px solid;
       margin: 4px;
     }
   }
 }
-md-content {
+.cards {
   bottom: 0;
-  position: absolute;
+  position: relative;
+  margin-top: 200px;
   width: 100%;
 }
 .pull-right {
   float: right;
+}
+.flex{
+  display: flex;
+  flex-flow: row wrap;
+  .col{
+    width: auto;
+    flex-grow: 1;
+  }
+}
+@media screen and (max-width: 1200px) {
+  .message-centered {
+    top: 100px;
+  }
+}
+@media screen and (max-width: 991px) {
+  .message-centered {
+    top: 0;
+    position: relative;
+    font-size: 22px;
+  }
+  .cards {
+    div[layout="column"] {
+      flex-flow: row wrap;
+
+  /* Then we define how is distributed the remaining space */
+  justify-content: space-around;
+    }
+  }
+}
+@media screen and (max-width: 767px) {
+
 }
