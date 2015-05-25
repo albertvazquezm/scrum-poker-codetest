@@ -5,6 +5,11 @@ var express = require('express'),
   glob = require('glob'),
   mongoose = require('mongoose');
 
+  var app = express();
+  var server = require('http').Server(app);
+  var io = require('socket.io')(server);
+
+
 mongoose.connect(config.db);
 var db = mongoose.connection;
 db.on('error', function () {
@@ -15,8 +20,9 @@ var models = glob.sync(config.root + '/app/models/*.js');
 models.forEach(function (model) {
   require(model);
 });
-var app = express();
 
 require('./config/express')(app, config);
 
-app.listen(config.port);
+require(config.root + '/app/sockets/pokerSocket.js')(io);
+
+server.listen(config.port);
