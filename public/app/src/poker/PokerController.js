@@ -3,11 +3,11 @@
   angular
     .module('poker')
     .controller('PokerController', [
-      'pokerService', '$mdSidenav', '$mdBottomSheet', '$http', '$q',
+      'pokerService', '$mdSidenav', '$mdBottomSheet', '$http', '$q','socket',
       UserController
     ]);
 
-  function UserController(userService, $mdSidenav, $mdBottomSheet, $http, $q) {
+  function UserController(userService, $mdSidenav, $mdBottomSheet, $http, $q, socket) {
 
     var vm = this;
 
@@ -19,11 +19,15 @@
     vm.choose = choose;
     vm.err = null;
 
+    socket.on('clients', function(data){
+      console.log(data);
+    })
+
     function goToCode() {
       resetErr();
       resetRoom();
-      $http.get('/api/room/' + vm.code).then(function(room) {
-        openRoom(room);
+      $http.get('/api/room/' + vm.code).then(function(data) {
+        openRoom(data.data.room);
       }, function(err) {
         vm.err = err.data.error;
       })
@@ -32,20 +36,16 @@
     function newRoom(){
       resetErr();
       resetRoom();
-      $http.post('/api/room').then(function(room) {
-        openRoom(room);
+      $http.post('/api/room').then(function(data) {
+        openRoom(data.data.room);
       }, function(err) {
         vm.err = err.data.error;
       })
     }
 
     function openRoom(room){
-      $http.post('/api/room/open').then(function() {
-        vm.room = room;
-      }, function(err) {
-        vm.err = err.data.error;
-      })
-
+      vm.room = room;
+      socket.emit('open',room._id);
     }
 
     function choose(idx){
