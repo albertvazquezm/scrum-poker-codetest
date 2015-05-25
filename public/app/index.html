@@ -9,7 +9,7 @@
   <meta name="description" content="">
   <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
 
-  <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Roboto:400,500,700,400italic'>
+  <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Roboto:100,400'>
   <link rel="stylesheet" href="./bower_components/angular-material/angular-material.css" />
   <link rel="stylesheet" href="./bower_components/font-awesome/css/font-awesome.min.css" />
   <link rel="stylesheet" href="assets/app.css" />
@@ -42,10 +42,26 @@
     <div class="md-warn" ng-show="vm.err">
       <span><i class="fa fa-times-circle-o"></i> {{vm.err}}</span>
     </div>
+    <div class="message-centered" ng-show="vm.room._id && !vm.end">
+      <h1>Waiting...</h1>
+      <h2>{{vm.votes.length}} / {{vm.connectedClients}}</h2>
+    </div>
+    <div class="message-centered end" ng-show="vm.room._id && vm.end">
+      <h1>All done!</h1>
+      <div layout="row">
+        <div ng-repeat="(key, card) in vm.votes track by key" flex>
+          <a href>
+            <div class="card">
+              {{card}}
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
     <md-content ng-show="vm.room._id">
       <div layout="row">
         <div ng-repeat="(key, card) in vm.cards track by key" flex>
-          <a href ng-click="vm.choose(key)" ng-class="{'active':vm.choosed === key}">
+          <a href ng-click="vm.choose(key)" ng-class="{'active':vm.choosed === key, 'disabled': vm.choosed}">
             <div class="card">
               {{card}}
             </div>
