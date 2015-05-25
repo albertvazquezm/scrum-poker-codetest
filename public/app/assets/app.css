@@ -20,6 +20,12 @@ a {
     padding: 40px 20px;
     text-align: center; }
 
+a.disabled {
+  text-decoration: none; }
+  a.disabled .card {
+    background: #555;
+    color: #333; }
+
 a.active {
   text-decoration: none; }
   a.active .card {
@@ -28,6 +34,26 @@ a.active {
 
 a:focus {
   outline: none; }
+
+.message-centered {
+  position: absolute;
+  top: 250px;
+  width: 100%;
+  text-align: center;
+  font-size: 42px; }
+  .message-centered h1 {
+    font-weight: lighter; }
+  .message-centered h2 {
+    padding: 30px;
+    background: #ff4081;
+    color: #fff;
+    width: auto; }
+  .message-centered.end h1 {
+    color: #4DD0E1; }
+  .message-centered.end .card {
+    background: #4DD0E1;
+    border: #80DEEA 4px solid;
+    margin: 4px; }
 
 md-content {
   bottom: 0;
