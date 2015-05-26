@@ -6,6 +6,10 @@ body {
   margin: 0;
   padding: 0;
 }
+.md-toolbar-tools{
+  max-height: 100%;
+  height: auto;
+}
 .room-status {
   padding: 15px;
   background: #4caf50;
@@ -39,7 +43,6 @@ a:focus {
   outline: none;
 }
 .message-centered {
-  position: absolute;
   top: 250px;
   width: 100%;
   text-align: center;
@@ -66,39 +69,30 @@ a:focus {
 }
 .cards {
   bottom: 0;
-  position: relative;
+  position: absolute;
   margin-top: 200px;
   width: 100%;
 }
 .pull-right {
   float: right;
 }
-.flex{
-  display: flex;
-  flex-flow: row wrap;
-  .col{
-    width: auto;
-    flex-grow: 1;
-  }
-}
+
 @media screen and (max-width: 1200px) {
   .message-centered {
     top: 100px;
   }
 }
-@media screen and (max-width: 991px) {
+@media screen and (max-width: 959px) {
+  .cards{
+    position: relative;
+    .card{
+      padding: 20px;
+    }
+  }
   .message-centered {
     top: 0;
     position: relative;
     font-size: 22px;
-  }
-  .cards {
-    div[layout="column"] {
-      flex-flow: row wrap;
-
-  /* Then we define how is distributed the remaining space */
-  justify-content: space-around;
-    }
   }
 }
 @media screen and (max-width: 767px) {

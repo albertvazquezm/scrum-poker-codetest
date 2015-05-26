@@ -18,28 +18,45 @@
 <body ng-app="poker" layout="row" ng-controller="PokerController as vm">
 
   <div layout="column" layout-fill>
+
     <md-toolbar>
       <div class="md-toolbar-tools">
-        <span>SCRUM Poker Test</span>
+        <span flex>SCRUM Poker</span>
         <!-- fill up the space between left and right area -->
         <span flex></span>
-        <md-input-container md-no-float>
+        <md-input-container md-no-float flex>
           <label>Room CODE</label>
           <input type="string" ng-model="vm.code" required>
         </md-input-container>
-        <md-button ng-click="vm.goToCode()">
+        <md-button ng-click="vm.goToCode()" flex>
           <i class="fa fa-long-arrow-right"></i> GO
         </md-button>
-        <md-button ng-click="vm.newRoom()">
+        <md-button ng-click="vm.newRoom()" flex>
           <i class="fa fa-plus"></i> NEW
         </md-button>
       </div>
     </md-toolbar>
+    <!-- <md-toolbar>
+      <div class="md-toolbar-tools">
+        <span flex>SCRUM Poker Test</span>
+        <md-input-container md-no-float flex>
+          <label>Room CODE</label>
+          <input type="string" ng-model="vm.code" required>
+        </md-input-container>
+        <md-button ng-click="vm.goToCode()" flex>
+          <i class="fa fa-long-arrow-right"></i> GO
+        </md-button>
+        <md-button ng-click="vm.newRoom()" flex>
+          <i class="fa fa-plus"></i> NEW
+        </md-button>
+      </div>
+    </md-toolbar> -->
+
     <div class="room-status" ng-show="vm.room._id">
       <span>ROOM OPEN</span>
       <strong class="pull-right"> {{vm.room._id}}</strong>
     </div>
-    <div class="md-warn" ng-show="vm.err">
+    <div class="md-warn room-status" ng-show="vm.err">
       <span><i class="fa fa-times-circle-o"></i> {{vm.err}}</span>
     </div>
 
@@ -59,15 +76,14 @@
         </div>
       </div>
     </div>
-    <div class="cards" ng-show="vm.room._id">
-      <div class="flex">
-        <div ng-repeat="(key, card) in vm.cards track by key" class="col">
-          <a href ng-click="vm.choose(key)" ng-class="{'active':vm.choosed === key, 'disabled': vm.choosed}">
-            <div class="card">
-              {{card}}
-            </div>
-          </a>
-        </div>
+
+    <div class="cards" layout="row" layout-sm="column" layout-md="column" ng-show="vm.room._id">
+      <div ng-repeat="(key, card) in vm.cards track by key" flex>
+        <a href ng-click="vm.choose(key)" ng-class="{'active':vm.choosed === key, 'disabled': vm.choosed}">
+          <div class="card">
+            {{card}}
+          </div>
+        </a>
       </div>
     </div>
   </div>
