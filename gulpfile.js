@@ -2,7 +2,8 @@ var gulp = require('gulp'),
   nodemon = require('gulp-nodemon'),
   plumber = require('gulp-plumber'),
   livereload = require('gulp-livereload'),
-  sass = require('gulp-ruby-sass');
+  sass = require('gulp-ruby-sass'),
+  bower = require('gulp-bower');
 
 gulp.task('sass', function () {
   return sass('./public/app/assets')
@@ -26,8 +27,14 @@ gulp.task('develop', function () {
   });
 });
 
+gulp.task('bower', function() {
+  return bower()
+    .pipe(gulp.dest('lib/'))
+});
+
 gulp.task('default', [
   'sass',
   'develop',
-  'watch'
+  'watch',
+  'bower'
 ]);
